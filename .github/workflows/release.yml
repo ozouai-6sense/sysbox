@@ -21,11 +21,13 @@ jobs:
             docker_platform: linux/arm64
 
     steps:
-      - name: Checkout with submodules
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
+
+      - name: Init required submodules
+        run: git submodule update --init sysbox-runc sysbox-libs
 
       - name: Build sysbox-runc via Docker
         run: |
