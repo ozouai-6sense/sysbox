@@ -86,8 +86,9 @@ jobs:
 
       - name: Rename binaries with arch suffix
         run: |
+          mkdir -p release
           for arch in amd64 arm64; do
-            cp "dist/sysbox-runc-${arch}/sysbox-runc" "dist/sysbox-runc-${arch}"
+            cp "dist/sysbox-runc-${arch}/sysbox-runc" "release/sysbox-runc-${arch}"
           done
 
       - name: Create release
@@ -114,5 +115,5 @@ jobs:
             chmod +x /usr/local/sbin/sysbox-runc
             ```
           files: |
-            dist/sysbox-runc-amd64
-            dist/sysbox-runc-arm64
+            release/sysbox-runc-amd64
+            release/sysbox-runc-arm64
